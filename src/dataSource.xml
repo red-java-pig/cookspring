@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd ">
+
+	<!-- Straight value:property中value标签进行直接赋值 -->
+	<bean id="myDataSource"
+		class="org.apache.commons.dbcp2.BasicDataSource"
+		destroy-method="close">
+		<!-- results in a setDriverClassName(String) call -->
+		<property name="driverClassName"
+			value="com.mysql.jdbc.Driver" />
+		<property name="url" value="jdbc:mysql://localhost:3306/test" />
+		<property name="username" value="root" />
+		<property name="password" value="770709" />
+	</bean>
+
+	<!--  -->
+	<bean id="mappings"
+		class="org.springframework.context.support.PropertySourcesPlaceholderConfigurer">
+		<!-- typed as a java.util.Properties -->
+		<property name="properties">
+			<value>
+				jdbc.driver.className=com.mysql.jdbc.Driver
+				jdbc.url=jdbc:mysql://localhost:3306/test
+				jdbc.user=root
+				jdbc.password=770709
+			</value>
+		</property>
+	</bean>
+
+</beans>
