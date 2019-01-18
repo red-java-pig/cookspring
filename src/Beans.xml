@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:c="http://www.springframework.org/schema/c"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd ">
+
+	<bean id="engineFactory"
+		class="psn.redpig.springcore.EngineFactory" />
+
+	<bean id="engine" factory-bean="engineFactory"
+		factory-method="produceEngine" />
+
+	<bean id="wheel" class="psn.redpig.springcore.Wheel">
+		<constructor-arg name="wheelNum" value="1" />
+	</bean>
+
+	<bean id="car" class="psn.redpig.springcore.Car">
+		<constructor-arg name="wheel" ref="wheel" />
+		<constructor-arg name="engine" ref="engine" />
+	</bean>
+
+	<bean id="exampleBean" class="psn.redpig.springcore.ExampleBean">
+		<constructor-arg name="years" value="7500000" />
+		<constructor-arg name="ultimateAnswer" value="42" />
+	</bean>
+
+	<bean id="simpleMovieLister"
+		class="psn.redpig.springcore.SimpleMovieLister">
+		<constructor-arg name="movieFinder" ref="movieFinder" />
+	</bean>
+
+	<bean id="movieFinder" class="psn.redpig.springcore.MovieFinder" />
+
+	<!-- 使用setter方法进行依赖注入 -->
+	<bean id="exampleBean1" class="psn.redpig.springcore.ExampleBean1">
+		<property name="beanOne">
+			<ref bean="anotherBean" />
+		</property>
+		<property name="beanTwo" ref="yetAnotherBean" />
+		<property name="integerProperty" value="1" />
+	</bean>
+
+	<bean id="anotherBean" class="psn.redpig.springcore.AnotherBean" />
+
+	<bean id="yetAnotherBean"
+		class="psn.redpig.springcore.YetAnotherBean" />
+
+	<!-- 使用构造函数参数方法进行依赖注入 -->
+	<bean id="exampleBean2" class="psn.redpig.springcore.ExampleBean2">
+		<constructor-arg ref="anotherBean" />
+		<constructor-arg ref="yetAnotherBean" />
+		<constructor-arg value="1" />
+	</bean>
+
+	<!-- 使用静态工厂方法进行依赖注入 -->
+	<bean id="exampleBean3" class="psn.redpig.springcore.ExampleBean3"
+		factory-method="createInstance">
+		<constructor-arg ref="anotherBean" />
+		<constructor-arg ref="yetAnotherBean" />
+		<constructor-arg value="1" />
+	</bean>
+
+	<bean id="theTargetBean"
+		class="psn.redpig.springcore.TheTargetBean" />
+
+	<bean id="theClientBean"
+		class="psn.redpig.springcore.TheClientBean">
+		<property name="theTargetName">
+			<idref bean="theTargetBean" />
+		</property>
+	</bean>
+
+	<!-- 内嵌bean的使用 -->
+	<bean id="avatar" class="psn.redpig.springcore.Avatar">
+		<!-- instead of using a reference to a target bean, simply define the target 
+			bean inline -->
+		<constructor-arg name="person">
+			<bean class="psn.redpig.springcore.Person"> <!-- this is the inner bean -->
+				<property name="name" value="Fiona Apple" />
+				<property name="age" value="25" />
+			</bean>
+		</constructor-arg>
+	</bean>
+
+	<!-- 集合的使用 -->
+	<bean id="parent" class="psn.redpig.springcore.ComplexObject">
+		<!-- results in a setAdminEmails(java.util.Properties) call -->
+		<property name="adminEmails">
+			<props>
+				<prop key="administrator">administrator@example.org</prop>
+				<prop key="support">support@example.org</prop>
+				<prop key="development">development@example.org</prop>
+			</props>
+		</property>
+		<!-- results in a setSomeList(java.util.List) call -->
+		<property name="someList">
+			<list>
+				<value>a list element followed by a reference</value>
+				<ref bean="myDataSource" />
+			</list>
+		</property>
+		<!-- results in a setSomeMap(java.util.Map) call -->
+		<property name="someMap">
+			<map>
+				<entry key="an entry" value="just some string" />
+				<entry key="a ref" value-ref="myDataSource" />
+			</map>
+		</property>
+		<!-- results in a setSomeSet(java.util.Set) call -->
+		<property name="someSet">
+			<set>
+				<value>just some string</value>
+				<ref bean="myDataSource" />
+			</set>
+		</property>
+	</bean>
+
+	<!-- 集合的合并 -->
+	<bean id="child" parent="parent"
+		class="psn.redpig.springcore.MoreComplexObject">
+		<property name="adminEmails">
+			<!-- the merge is specified on the child collection definition -->
+			<props merge="true">
+				<prop key="sales">sales@example.com</prop>
+				<prop key="support">support@example.co.uk</prop>
+			</props>
+		</property>
+	</bean>
+	<bean id="difchild" parent="parent"
+		class="psn.redpig.springcore.DifComplexObject">
+		<property name="adminEmails">
+			<!-- the merge is specified on the child collection definition -->
+			<props merge="true">
+				<prop key="sales">sales@example.com</prop>
+				<prop key="support">support@example.co.zh</prop>
+			</props>
+		</property>
+	</bean>
+
+	<!-- 集合的强制类型 -->
+	<bean id="stCollection"
+		class="psn.redpig.springcore.StrongTypeCollection">
+		<property name="accounts">
+			<map>
+				<entry key="one" value="9.99" />
+				<entry key="two" value="2.75" />
+				<entry key="six" value="3.99" />
+			</map>
+		</property>
+	</bean>
+
+	<!-- null和空串 -->
+	<!-- property的方法 -->
+	<bean id="exampleBean41"
+		class="psn.redpig.springcore.ExampleBean4">
+		<property name="email" value="" />
+	</bean>
+	<bean id="exampleBean42"
+		class="psn.redpig.springcore.ExampleBean4">
+		<property name="email">
+			<null />
+		</property>
+	</bean>
+	<!-- constructor-arg的方法 -->
+	<bean id="exampleBean51"
+		class="psn.redpig.springcore.ExampleBean5">
+		<constructor-arg name="email" value="" />
+	</bean>
+	<bean id="exampleBean52"
+		class="psn.redpig.springcore.ExampleBean5">
+		<constructor-arg name="email">
+			<null />
+		</constructor-arg>
+	</bean>
+
+	<!-- p-namespace中使用setter方法进行依赖注入 -->
+	<bean id="exampleBean43"
+		class="psn.redpig.springcore.ExampleBean4"
+		p:email="p-namespace@somewhere.com" />
+	<bean name="john-modern" class="psn.redpig.springcore.Person"
+		p:name="John Doe" p:age="30" p:spouse-ref="jane" />
+	<bean name="jane" class="psn.redpig.springcore.Person">
+		<property name="name" value="Jane Doe" />
+		<property name="age" value="28" />
+	</bean>
+
+	<!-- c-namespace中使用constructor-arg方法进行依赖注入 -->
+	<bean id="thingTwo" class="psn.redpig.springcore.ThingTwo" />
+	<bean id="thingThree" class="psn.redpig.springcore.ThingThree" />
+	<bean id="thingOne" class="psn.redpig.springcore.ThingOne"
+		c:thingTwo-ref="thingTwo"
+		c:thingThree-ref="thingThree"
+		c:email="c-namespace@somewhere.com" />
+
+
+</beans>
