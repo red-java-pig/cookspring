@@ -190,9 +190,13 @@
 	<bean id="thingTwo" class="psn.redpig.springcore.ThingTwo" />
 	<bean id="thingThree" class="psn.redpig.springcore.ThingThree" />
 	<bean id="thingOne" class="psn.redpig.springcore.ThingOne"
-		c:thingTwo-ref="thingTwo"
-		c:thingThree-ref="thingThree"
+		c:thingTwo-ref="thingTwo" c:thingThree-ref="thingThree"
 		c:email="c-namespace@somewhere.com" />
+
+	<!-- depends-on标签的使用 -->
+	<bean id="beanOne" class="psn.redpig.springcore.ExampleBean6" depends-on="manager,accountDao"/>
+	<bean id="manager" class="psn.redpig.springcore.ManagerBean" />
+	<bean id="accountDao" class="psn.redpig.springcore.AccountDao" />
 
 
 </beans>
