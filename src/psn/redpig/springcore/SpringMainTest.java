@@ -3,9 +3,13 @@ package psn.redpig.springcore;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-public class SpringCoreEx {
+public class SpringMainTest {
 	public static void main(String[] args) {
+		System.out.println("-------- start of Ioc initialization --------");
 		ApplicationContext ac = new ClassPathXmlApplicationContext("Beans.xml", "dataSource.xml");
+		System.out.println("-------- end   of Ioc initialization --------");
+
+		System.out.println("-------- start of system out test --------");
 
 		// null和空串
 		ExampleBean4 eb41 = (ExampleBean4) ac.getBean("exampleBean41");
@@ -32,5 +36,10 @@ public class SpringCoreEx {
 		// c-namespace中使用constructor-arg方法进行依赖注入
 		ThingOne th1 = (ThingOne) ac.getBean("thingOne");
 		System.out.println("c-namespace:" + th1.getEmail());
+		
+		// 延迟初始化，实例在第一次使用时才进行初始化
+		ExpensiveToCreateBean etcb = (ExpensiveToCreateBean)ac.getBean("lazy");
+		
+		System.out.println("-------- end   of system out test --------");
 	}
 }
