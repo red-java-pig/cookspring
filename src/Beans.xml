@@ -194,11 +194,26 @@
 		c:email="c-namespace@somewhere.com" />
 
 	<!-- depends-on标签的使用 -->
-	<bean id="beanOne" class="psn.redpig.springcore.ExampleBean6" depends-on="manager,accountDao"/>
+	<bean id="beanOne" class="psn.redpig.springcore.ExampleBean6"
+		depends-on="manager,accountDao" />
 	<bean id="manager" class="psn.redpig.springcore.ManagerBean" />
 	<bean id="accountDao" class="psn.redpig.springcore.AccountDao" />
-	
+
 	<!-- 延迟初始化，实例在第一次使用时才进行初始化 -->
-	<bean id="lazy" class="psn.redpig.springcore.ExpensiveToCreateBean" lazy-init="true"/>
+	<bean id="lazy"
+		class="psn.redpig.springcore.ExpensiveToCreateBean" lazy-init="true" />
+
+	<!-- 基于xml的方式方法注入 -->
+	<!-- 简单粗暴直接对spring框架中ApplicationContextAware接口实现 -->
+	<bean id="myCommand" class="psn.redpig.springcore.MyCommand"
+		scope="prototype" />
+	<bean id="commandManager1"
+		class="psn.redpig.springcore.CommandManager1" />
+	<!-- 优雅解耦不对任何spring框架接口实现 -->
+	<bean id="commandManager2"
+		class="psn.redpig.springcore.CommandManager2">
+		<lookup-method name="createMyCommand" bean="myCommand" />
+	</bean>
+
 
 </beans>

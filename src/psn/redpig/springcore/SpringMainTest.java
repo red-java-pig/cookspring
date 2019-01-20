@@ -32,13 +32,23 @@ public class SpringMainTest {
 		System.out.println("exampleBean43 email： " + eb43.getEmail());
 		Person johndon = (Person) ac.getBean("john-modern");
 		System.out.println("p-namespace:" + johndon);
-		
+
 		// c-namespace中使用constructor-arg方法进行依赖注入
 		ThingOne th1 = (ThingOne) ac.getBean("thingOne");
 		System.out.println("c-namespace:" + th1.getEmail());
-		
+
 		// 延迟初始化，实例在第一次使用时才进行初始化
-		ExpensiveToCreateBean etcb = (ExpensiveToCreateBean)ac.getBean("lazy");
+		ExpensiveToCreateBean etcb = (ExpensiveToCreateBean) ac.getBean("lazy");
+
+		// 基于xml的方式方法注入
+		// 简单粗暴直接对spring框架中ApplicationContextAware接口实现
+		CommandManager1 cm1 = (CommandManager1) ac.getBean("commandManager1");
+		cm1.process();
+		cm1.process();
+		// 优雅解耦不对任何spring框架接口实现
+		CommandManager2 cm2 = (CommandManager2) ac.getBean("commandManager2");
+		cm2.process();
+		cm2.process();
 		
 		System.out.println("-------- end   of system out test --------");
 	}
