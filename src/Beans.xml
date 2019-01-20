@@ -197,6 +197,8 @@
 	<bean id="beanOne" class="psn.redpig.springcore.ExampleBean6" depends-on="manager,accountDao"/>
 	<bean id="manager" class="psn.redpig.springcore.ManagerBean" />
 	<bean id="accountDao" class="psn.redpig.springcore.AccountDao" />
-
+	
+	<!-- 延迟初始化，实例在第一次使用时才进行初始化 -->
+	<bean id="lazy" class="psn.redpig.springcore.ExpensiveToCreateBean" lazy-init="true"/>
 
 </beans>
