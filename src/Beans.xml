@@ -216,8 +216,10 @@
 	</bean>
 
 	<!-- 初始化和销毁回调 -->
-	<!-- 为单个bean定义定义init-method和destroy-method -->
+	<!-- 为单个bean定义定义init-method和destroy-method进行初始化和销毁回调 -->
 	<bean id="exampleBean7" class="psn.redpig.springcore.ExampleBean7"
 		init-method="init" destroy-method="destroy" />
+	<!-- 通过实现spring的InitializingBean和DisposableBean接口进行初始化和销毁回调 -->
+	<bean id="exampleBean8" class="psn.redpig.springcore.ExampleBean8" />
 
 </beans>
