@@ -49,7 +49,11 @@ public class SpringMainTest {
 		CommandManager2 cm2 = (CommandManager2) ac.getBean("commandManager2");
 		cm2.process();
 		cm2.process();
-		
+
+		// 转为ClassPathXmlApplicationContext类型，调用close方法，可以引起destroy回调方法
+		ClassPathXmlApplicationContext xpxac = (ClassPathXmlApplicationContext) ac;
+		xpxac.close();
+
 		System.out.println("-------- end   of system out test --------");
 	}
 }
