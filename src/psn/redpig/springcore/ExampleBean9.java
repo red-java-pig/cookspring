@@ -6,6 +6,11 @@ import javax.annotation.PreDestroy;
 import org.springframework.beans.factory.DisposableBean;
 import org.springframework.beans.factory.InitializingBean;
 
+/**
+ * ExampleBean9
+ * @author john
+ * 一个bean不同生命周期回调的结合
+ */
 public class ExampleBean9 implements DisposableBean, InitializingBean {
 	public ExampleBean9() {
 		System.out.println("ExampleBean9 constructed!");
