@@ -9,6 +9,9 @@ import org.springframework.beans.factory.InitializingBean;
  * 通过实现spring的InitializingBean和DisposableBean接口进行初始化和销毁回调
  */
 public class ExampleBean8 implements InitializingBean, DisposableBean {
+	public ExampleBean8() {
+		System.out.println("ExampleBean8 constructed!");
+	}
 
 	@Override
 	public void destroy() throws Exception {
