@@ -52,7 +52,7 @@ public class SpringMainTest {
 
 		// 转为ClassPathXmlApplicationContext类型，调用close方法，可以引起destroy回调方法
 		ClassPathXmlApplicationContext xpxac = (ClassPathXmlApplicationContext) ac;
-		xpxac.close();
+		xpxac.registerShutdownHook();
 
 		System.out.println("-------- end   of system out test --------");
 	}
