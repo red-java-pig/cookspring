@@ -50,10 +50,10 @@ public class SpringMainTest {
 		cm2.process();
 		cm2.process();
 
-		// 转为ClassPathXmlApplicationContext类型，调用close方法，可以引起destroy回调方法
+		System.out.println("-------- end   of system out test --------");
+
+		// 转为ClassPathXmlApplicationContext类型，调用registerShutdownHook()方法，可以引起destroy回调方法
 		ClassPathXmlApplicationContext xpxac = (ClassPathXmlApplicationContext) ac;
 		xpxac.registerShutdownHook();
-
-		System.out.println("-------- end   of system out test --------");
 	}
 }
