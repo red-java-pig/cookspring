@@ -5,8 +5,8 @@ import org.springframework.stereotype.Component;
 
 /**
  * ExampleSmartLifecycle
- * 
- * @author redpig Spring中SmartLifecycle的作用
+ * @author redpig
+ * Spring中SmartLifecycle的作用
  */
 @Component
 public class ExampleSmartLifecycle implements SmartLifecycle {
