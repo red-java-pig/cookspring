@@ -8,7 +8,7 @@ import org.springframework.beans.factory.InitializingBean;
 
 /**
  * ExampleBean9
- * @author john
+ * @author redpig
  * 一个bean不同生命周期回调的结合
  */
 public class ExampleBean9 implements DisposableBean, InitializingBean {
