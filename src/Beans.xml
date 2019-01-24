@@ -9,7 +9,7 @@
     http://www.springframework.org/schema/context
     http://www.springframework.org/schema/context/spring-context.xsd">
 
-	<context:annotation-config/>
+	<context:annotation-config />
 
 	<bean id="engineFactory"
 		class="psn.redpig.springcore.EngineFactory" />
@@ -229,5 +229,9 @@
 	<!-- 一个bean不同生命周期回调的结合 -->
 	<bean id="exampleBean9" class="psn.redpig.springcore.ExampleBean9"
 		init-method="init" destroy-method="close" />
+
+	<!-- 开始和关闭回调 -->
+	<bean id="exampleSmartLifecycle"
+		class="psn.redpig.springcore.ExampleSmartLifecycle" />
 
 </beans>
