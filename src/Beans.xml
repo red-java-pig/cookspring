@@ -242,4 +242,14 @@
 	<bean id="exampleBeanNameAware"
 		class="psn.redpig.springcore.ExampleBeanNameAware" />
 
+	<!-- bean定义的继承 -->
+	<bean id="testBean" class="psn.redpig.springcore.TestBean">
+		<constructor-arg name="name" value="parent" />
+		<constructor-arg name="age" value="30" />
+	</bean>
+	<bean id="derivedTestBean"
+		class="psn.redpig.springcore.DerivedTestBean" parent="testBean">
+		<constructor-arg name="name" value="override" />
+	</bean>
+
 </beans>

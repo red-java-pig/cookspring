@@ -59,6 +59,10 @@ public class SpringMainTest {
 		// 通过BeanNameAware来获取bean的名称
 		ExampleBeanNameAware ebna = (ExampleBeanNameAware)ac.getBean("exampleBeanNameAware");
 		ebna.whoAmI();
+		
+		System.out.println("========bean定义的继承========");
+		System.out.println(ac.getBean("testBean"));
+		System.out.println(ac.getBean("derivedTestBean"));
 
 		System.out.println("-------- end   of system out test --------");
 
