@@ -55,6 +55,10 @@ public class SpringMainTest {
 				.getBean("exampleApplicationContextAware");
 		//eaca.setApplicationContext(ac); 不需要主动调用，容器初始化之后会主动调用
 		eaca.process();
+		
+		// 通过BeanNameAware来获取bean的名称
+		ExampleBeanNameAware ebna = (ExampleBeanNameAware)ac.getBean("exampleBeanNameAware");
+		ebna.whoAmI();
 
 		System.out.println("-------- end   of system out test --------");
 

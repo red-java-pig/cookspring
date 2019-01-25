@@ -238,4 +238,8 @@
 	<bean id="exampleApplicationContextAware"
 		class="psn.redpig.springcore.ExampleApplicationContextAware" />
 
+	<!-- 通过BeanNameAware来获取bean的名称 -->
+	<bean id="exampleBeanNameAware"
+		class="psn.redpig.springcore.ExampleBeanNameAware" />
+
 </beans>
