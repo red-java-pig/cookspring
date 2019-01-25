@@ -1,6 +1,6 @@
 package psn.redpig.springcore;
 
-public class TestBean {
+public abstract class TestBean {
 	private String name;
 	private int age;
 
@@ -11,6 +11,6 @@ public class TestBean {
 	}
 
 	public String toString() {
-		return "TestBean:My name is " + name + ", and I'm " + age + " years old!";
+		return this.getClass().getSimpleName() + ":My name is " + name + ", and I'm " + age + " years old!";
 	}
 }

@@ -1,16 +1,17 @@
 package psn.redpig.springcore;
 
-public class DerivedTestBean {
-	private String name;
-	private int age;
+public class DerivedTestBean extends TestBean {
+	//private String name;
+	//private int age;
+	private String gender;
 
-	public DerivedTestBean(String name, int age) {
-		this.name = name;
-		this.age = age;
+	public DerivedTestBean(String name, int age, String gender) {
+		super(name, age);
+		this.gender = gender;
 		System.out.println("DerivedTestBean Constructed!");
 	}
 
 	public String toString() {
-		return "DerivedTestBean:My name is " + name + ", and I'm " + age + " years old!";
+		return super.toString() + " I am a " + gender + "!";
 	}
 }

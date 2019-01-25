@@ -61,7 +61,7 @@ public class SpringMainTest {
 		ebna.whoAmI();
 		
 		System.out.println("========bean定义的继承========");
-		System.out.println(ac.getBean("testBean"));
+		//System.out.println(ac.getBean("testBean")); testBean是abstract类型，不能进行实例化。
 		System.out.println(ac.getBean("derivedTestBean"));
 
 		System.out.println("-------- end   of system out test --------");
