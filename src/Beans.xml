@@ -234,4 +234,8 @@
 	<bean id="exampleSmartLifecycle"
 		class="psn.redpig.springcore.ExampleSmartLifecycle" />
 
+	<!-- 通过ApplicationContextAware来获取bean -->
+	<bean id="exampleApplicationContextAware"
+		class="psn.redpig.springcore.ExampleApplicationContextAware" />
+
 </beans>

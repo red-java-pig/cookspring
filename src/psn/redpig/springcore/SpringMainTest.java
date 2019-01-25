@@ -50,6 +50,12 @@ public class SpringMainTest {
 		cm2.process();
 		cm2.process();
 
+		// 通过ApplicationContextAware来获取bean
+		ExampleApplicationContextAware eaca = (ExampleApplicationContextAware) ac
+				.getBean("exampleApplicationContextAware");
+		eaca.setApplicationContext(ac);
+		eaca.process();
+
 		System.out.println("-------- end   of system out test --------");
 
 		// 转为ClassPathXmlApplicationContext类型，调用registerShutdownHook()方法，可以引起destroy回调方法

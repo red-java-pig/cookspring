@@ -24,5 +24,9 @@ public class Car {
 	public void setWheel(Wheel wheel) {
 		this.wheel = wheel;
 	}
+	
+	public void move() {
+		System.out.println("Car is moving!");
+	}
 
 }
