@@ -242,7 +242,7 @@
 	<bean id="exampleBeanNameAware"
 		class="psn.redpig.springcore.ExampleBeanNameAware" />
 
-	<!-- bean定义的继承 -->
+	<!-- bean定义的继承：抽象类 -->
 	<bean id="testBean" abstract="true" class="psn.redpig.springcore.TestBean" >
 		<constructor-arg name="name" value="parent" />
 		<constructor-arg name="age" value="30" />
@@ -252,6 +252,17 @@
 	lazy-init="true">
 		<constructor-arg name="name" value="override" />
 		<constructor-arg name="gender" value="male" />
+	</bean>
+	<!-- bean定义的继承：纯模板定义 -->
+	<bean id="testBeanWithoutClass" abstract="true" >
+		<constructor-arg name="name" value="parent" />
+		<constructor-arg name="age" value="20" />
+	</bean>
+	<bean id="derivedTestBeanWithoutClass"
+	class="psn.redpig.springcore.DerivedTestBeanWithoutClass" parent="testBeanWithoutClass"
+	lazy-init="true">
+		<constructor-arg name="name" value="overrideWithoutClass" />
+		<constructor-arg name="gender" value="female" />
 	</bean>
 
 </beans>

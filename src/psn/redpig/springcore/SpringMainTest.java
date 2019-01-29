@@ -60,9 +60,12 @@ public class SpringMainTest {
 		ExampleBeanNameAware ebna = (ExampleBeanNameAware)ac.getBean("exampleBeanNameAware");
 		ebna.whoAmI();
 		
-		System.out.println("========bean定义的继承========");
+		System.out.println("========bean定义的继承：抽象类========");
 		//System.out.println(ac.getBean("testBean")); testBean是abstract类型，不能进行实例化。
 		System.out.println(ac.getBean("derivedTestBean"));
+		
+		System.out.println("========bean定义的继承：纯模板定义========");
+		System.out.println(ac.getBean("derivedTestBeanWithoutClass"));
 
 		System.out.println("-------- end   of system out test --------");
 
