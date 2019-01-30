@@ -271,6 +271,6 @@
 	</bean>
 	
 	<!-- 通过实现BeanPostProcess接口来控制bean的初始化 -->
-	<bean class="psn.redpig.springcore.InstantiationTracingBeanPostProcessor" />
+	<!-- <bean class="psn.redpig.springcore.InstantiationTracingBeanPostProcessor" /> -->
 
 </beans>
