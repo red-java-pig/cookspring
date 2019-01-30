@@ -2,12 +2,15 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:lang="http://www.springframework.org/schema/lang"
 	xmlns:p="http://www.springframework.org/schema/p"
 	xmlns:c="http://www.springframework.org/schema/c"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans
     http://www.springframework.org/schema/beans/spring-beans.xsd 
     http://www.springframework.org/schema/context
-    http://www.springframework.org/schema/context/spring-context.xsd">
+    http://www.springframework.org/schema/context/spring-context.xsd
+    http://www.springframework.org/schema/lang
+	http://www.springframework.org/schema/lang/spring-lang.xsd">
 
 	<context:annotation-config />
 
@@ -243,26 +246,31 @@
 		class="psn.redpig.springcore.ExampleBeanNameAware" />
 
 	<!-- bean定义的继承：抽象类 -->
-	<bean id="testBean" abstract="true" class="psn.redpig.springcore.TestBean" >
+	<bean id="testBean" abstract="true"
+		class="psn.redpig.springcore.TestBean">
 		<constructor-arg name="name" value="parent" />
 		<constructor-arg name="age" value="30" />
 	</bean>
 	<bean id="derivedTestBean"
-	class="psn.redpig.springcore.DerivedTestBean" parent="testBean"
-	lazy-init="true">
+		class="psn.redpig.springcore.DerivedTestBean" parent="testBean"
+		lazy-init="true">
 		<constructor-arg name="name" value="override" />
 		<constructor-arg name="gender" value="male" />
 	</bean>
 	<!-- bean定义的继承：纯模板定义 -->
-	<bean id="testBeanWithoutClass" abstract="true" >
+	<bean id="testBeanWithoutClass" abstract="true">
 		<constructor-arg name="name" value="parent" />
 		<constructor-arg name="age" value="20" />
 	</bean>
 	<bean id="derivedTestBeanWithoutClass"
-	class="psn.redpig.springcore.DerivedTestBeanWithoutClass" parent="testBeanWithoutClass"
-	lazy-init="true">
-		<constructor-arg name="name" value="overrideWithoutClass" />
+		class="psn.redpig.springcore.DerivedTestBeanWithoutClass"
+		parent="testBeanWithoutClass" lazy-init="true">
+		<constructor-arg name="name"
+			value="overrideWithoutClass" />
 		<constructor-arg name="gender" value="female" />
 	</bean>
+	
+	<!-- 通过实现BeanPostProcess接口来控制bean的初始化 -->
+	<bean class="psn.redpig.springcore.InstantiationTracingBeanPostProcessor" />
 
 </beans>
