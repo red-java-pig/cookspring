@@ -1,4 +1,8 @@
 bin/
 lib/
 /.classpath
+<<<<<<< HEAD
 /.project
+=======
+/.project
+>>>>>>> branch 'master' of https://github.com/redpigg/cookspring.git
